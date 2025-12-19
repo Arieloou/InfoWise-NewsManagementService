@@ -1,0 +1,121 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\mateo\\source\\repos\\InfoWise-NewsManagementService\\NewsManagementService\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C049B43B-636E-5CAA-80D6-944C3051B373}|NewsManagementService.csproj|c:\\users\\mateo\\source\\repos\\infowise-newsmanagementservice\\newsmanagementservice\\controllers\\newssummarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C049B43B-636E-5CAA-80D6-944C3051B373}|NewsManagementService.csproj|solutionrelative:controllers\\newssummarycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C049B43B-636E-5CAA-80D6-944C3051B373}|NewsManagementService.csproj|c:\\users\\mateo\\source\\repos\\infowise-newsmanagementservice\\newsmanagementservice\\infraestructure\\repositories\\newsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C049B43B-636E-5CAA-80D6-944C3051B373}|NewsManagementService.csproj|solutionrelative:infraestructure\\repositories\\newsrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C049B43B-636E-5CAA-80D6-944C3051B373}|NewsManagementService.csproj|c:\\users\\mateo\\source\\repos\\infowise-newsmanagementservice\\newsmanagementservice\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C049B43B-636E-5CAA-80D6-944C3051B373}|NewsManagementService.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C049B43B-636E-5CAA-80D6-944C3051B373}|NewsManagementService.csproj|c:\\users\\mateo\\source\\repos\\infowise-newsmanagementservice\\newsmanagementservice\\interfaces\\repositories\\inewscategoriesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C049B43B-636E-5CAA-80D6-944C3051B373}|NewsManagementService.csproj|solutionrelative:interfaces\\repositories\\inewscategoriesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C049B43B-636E-5CAA-80D6-944C3051B373}|NewsManagementService.csproj|c:\\users\\mateo\\source\\repos\\infowise-newsmanagementservice\\newsmanagementservice\\infraestructure\\repositories\\newscategoriesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C049B43B-636E-5CAA-80D6-944C3051B373}|NewsManagementService.csproj|solutionrelative:infraestructure\\repositories\\newscategoriesrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C049B43B-636E-5CAA-80D6-944C3051B373}|NewsManagementService.csproj|c:\\users\\mateo\\source\\repos\\infowise-newsmanagementservice\\newsmanagementservice\\infraestructure\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C049B43B-636E-5CAA-80D6-944C3051B373}|NewsManagementService.csproj|solutionrelative:infraestructure\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "NewsCategoriesRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mateo\\source\\repos\\InfoWise-NewsManagementService\\NewsManagementService\\Infraestructure\\Repositories\\NewsCategoriesRepository.cs",
+              "RelativeDocumentMoniker": "Infraestructure\\Repositories\\NewsCategoriesRepository.cs",
+              "ToolTip": "C:\\Users\\mateo\\source\\repos\\InfoWise-NewsManagementService\\NewsManagementService\\Infraestructure\\Repositories\\NewsCategoriesRepository.cs",
+              "RelativeToolTip": "Infraestructure\\Repositories\\NewsCategoriesRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T13:50:29.481Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "INewsCategoriesRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mateo\\source\\repos\\InfoWise-NewsManagementService\\NewsManagementService\\Interfaces\\Repositories\\INewsCategoriesRepository.cs",
+              "RelativeDocumentMoniker": "Interfaces\\Repositories\\INewsCategoriesRepository.cs",
+              "ToolTip": "C:\\Users\\mateo\\source\\repos\\InfoWise-NewsManagementService\\NewsManagementService\\Interfaces\\Repositories\\INewsCategoriesRepository.cs",
+              "RelativeToolTip": "Interfaces\\Repositories\\INewsCategoriesRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-18T13:45:30.417Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NewsRepository.cs",
+              "DocumentMoniker": "C:\\Users\\mateo\\source\\repos\\InfoWise-NewsManagementService\\NewsManagementService\\Infraestructure\\Repositories\\NewsRepository.cs",
+              "RelativeDocumentMoniker": "Infraestructure\\Repositories\\NewsRepository.cs",
+              "ToolTip": "C:\\Users\\mateo\\source\\repos\\InfoWise-NewsManagementService\\NewsManagementService\\Infraestructure\\Repositories\\NewsRepository.cs",
+              "RelativeToolTip": "Infraestructure\\Repositories\\NewsRepository.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAQwBoAAABAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T04:49:14.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NewsSummaryController.cs",
+              "DocumentMoniker": "C:\\Users\\mateo\\source\\repos\\InfoWise-NewsManagementService\\NewsManagementService\\Controllers\\NewsSummaryController.cs",
+              "RelativeDocumentMoniker": "Controllers\\NewsSummaryController.cs",
+              "ToolTip": "C:\\Users\\mateo\\source\\repos\\InfoWise-NewsManagementService\\NewsManagementService\\Controllers\\NewsSummaryController.cs",
+              "RelativeToolTip": "Controllers\\NewsSummaryController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T04:27:46.212Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\mateo\\source\\repos\\InfoWise-NewsManagementService\\NewsManagementService\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\mateo\\source\\repos\\InfoWise-NewsManagementService\\NewsManagementService\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T00:57:22.766Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ApplicationDBContext.cs",
+              "DocumentMoniker": "C:\\Users\\mateo\\source\\repos\\InfoWise-NewsManagementService\\NewsManagementService\\Infraestructure\\ApplicationDBContext.cs",
+              "RelativeDocumentMoniker": "Infraestructure\\ApplicationDBContext.cs",
+              "ToolTip": "C:\\Users\\mateo\\source\\repos\\InfoWise-NewsManagementService\\NewsManagementService\\Infraestructure\\ApplicationDBContext.cs",
+              "RelativeToolTip": "Infraestructure\\ApplicationDBContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T04:31:02.897Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
