@@ -7,16 +7,8 @@ namespace NewsManagementService.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class NewsSummaryController : ControllerBase
+    public class NewsSummaryController(INewsRepository repository) : ControllerBase
     {
-        private readonly INewsRepository _repository;
-
-        public NewsSummaryController(INewsRepository repository)
-        {
-            _repository = repository;
-        }
-
-
         [HttpGet]
         [Route("health")]
         public IActionResult HealthCheck()
@@ -29,14 +21,14 @@ namespace NewsManagementService.Controllers
         [Route("all")]
         public async Task<List<NewsSummary>> GetAllNewsSummaries()
         {
-            return await _repository.GetAllNewsAsync();
+            return await repository.GetAllNewsAsync();
         }
 
         [HttpGet]
         [Route("category/{id}")]
         public async Task<List<NewsSummary>> GetNewsByCategoryId(int categoryId) 
         { 
-            return await _repository.GetNewsByCategoryId(categoryId);
+            return await repository.GetNewsByCategoryId(categoryId);
         }
     }
 }

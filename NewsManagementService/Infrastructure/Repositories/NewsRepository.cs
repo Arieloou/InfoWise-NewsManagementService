@@ -2,12 +2,12 @@
 using NewsManagementService.Interfaces.Repositories;
 using NewsManagementService.Models;
 
-namespace NewsManagementService.Infraestructure.Repositories
+namespace NewsManagementService.Infrastructure.Repositories
 {
     public class NewsRepository : INewsRepository
     {
-        private readonly ApplicationDBContext _context;
-        public NewsRepository(ApplicationDBContext context)
+        private readonly ApplicationDbContext _context;
+        public NewsRepository(ApplicationDbContext context)
         {
             _context = context;
         }

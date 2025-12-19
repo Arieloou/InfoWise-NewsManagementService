@@ -2,9 +2,9 @@
 using Microsoft.Extensions.Hosting;
 using NewsManagementService.Models;
 
-namespace NewsManagementService.Infraestructure
+namespace NewsManagementService.Infrastructure
 {
-    public class ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : DbContext(options)
+    public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : DbContext(options)
     {
         public DbSet<NewsSummary> NewsSummaries { get; set; }
         public DbSet<NewsCategory> NewsCategories { get; set; }
