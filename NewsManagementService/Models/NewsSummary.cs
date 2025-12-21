@@ -12,5 +12,5 @@ public class NewsSummary
     [Required]
     public required string Content { get; set; } = string.Empty;
     public string Source { get; set; } = string.Empty;
-    public List<NewsCategory> NewsCategories { get; } = [];
+    public List<NewsCategory> NewsCategories { get; set; } = [];
 }

@@ -15,19 +15,18 @@ namespace NewsManagementService.Controllers
         {
             return Ok("NewsSummary Service is running.");
         }
-
-
+        
         [HttpGet]
         [Route("all")]
         public async Task<List<NewsSummary>> GetAllNewsSummaries()
         {
             return await repository.GetAllNewsAsync();
-        }
+        }   
 
         [HttpGet]
         [Route("category/{id}")]
         public async Task<List<NewsSummary>> GetNewsByCategoryId(int categoryId) 
-        { 
+        {
             return await repository.GetNewsByCategoryId(categoryId);
         }
     }

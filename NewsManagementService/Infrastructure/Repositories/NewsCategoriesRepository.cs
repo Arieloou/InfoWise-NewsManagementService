@@ -4,21 +4,16 @@ using NewsManagementService.Models;
 
 namespace NewsManagementService.Infrastructure.Repositories
 {
-    public class NewsCategoriesRepository : INewsCategoriesRepository
+    public class NewsCategoriesRepository(ApplicationDbContext context) : INewsCategoriesRepository
     {
-        private readonly ApplicationDbContext _context;
-        public NewsCategoriesRepository(ApplicationDbContext context)
-        {
-            _context = context;
-        }
         public async Task AddNewsCategoryAsync(NewsCategory newsCategory)
         {
-            await _context.NewsCategories.AddAsync(newsCategory);
+            await context.NewsCategories.AddAsync(newsCategory);
         }
 
         public async Task<List<NewsCategory>> GetAllNewsCategoriesAsync()
         {
-            return await _context.NewsCategories
+            return await context.NewsCategories
                 .Include(c => c.NewsSummaries)
                 .ToListAsync();
         }

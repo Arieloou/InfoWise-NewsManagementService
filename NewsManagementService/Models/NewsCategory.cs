@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NewsManagementService.Models
 {
@@ -7,7 +8,9 @@ namespace NewsManagementService.Models
         [Key]
         public int Id { get; set; }
         [Required]
-        public string Name { get; set; } = string.Empty;
+        public required string Name { get; set; } = string.Empty;
+        [ForeignKey(nameof(MacroNewsCategory))]
+        public required int MacroNewsCategoryId { get; set; }
         public List<NewsSummary> NewsSummaries { get; } = [];
     }
 }

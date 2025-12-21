@@ -8,6 +8,8 @@ namespace NewsManagementService.Infrastructure
     {
         public DbSet<NewsSummary> NewsSummaries { get; set; }
         public DbSet<NewsCategory> NewsCategories { get; set; }
+        public DbSet<MacroNewsCategory> MacroNewsCategories { get; set; }
+        public DbSet<UserPreferencesReplica> UserPreferencesReplicas { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

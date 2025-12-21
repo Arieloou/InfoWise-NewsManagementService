@@ -17,6 +17,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql
 
 builder.Services.AddScoped<INewsRepository, NewsRepository>();
 builder.Services.AddScoped<INewsCategoriesRepository, NewsCategoriesRepository>();
+builder.Services.AddScoped<IMacroNewsCategoriesRepository, MacroNewsCategoriesRepository>();
 
 var app = builder.Build();
 
