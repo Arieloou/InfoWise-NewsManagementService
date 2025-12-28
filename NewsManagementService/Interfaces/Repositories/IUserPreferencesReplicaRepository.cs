@@ -1,6 +1,9 @@
-﻿namespace NewsManagementService.Interfaces.Repositories;
+﻿using NewsManagementService.Infrastructure.DTOs;
+
+namespace NewsManagementService.Interfaces.Repositories;
 
 public interface IUserPreferencesReplicaRepository
 {
+    public Task SaveUserPreferencesAsync(UserPreferencesDto userPreferencesDto);
     public Task<List<string>> GetEmailsByCategoryNamesAsync(List<string> categoryNames);
 }

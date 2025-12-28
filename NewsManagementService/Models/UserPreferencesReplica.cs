@@ -1,8 +1,17 @@
-﻿namespace NewsManagementService.Models;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-public class UserPreferencesReplica
+namespace NewsManagementService.Models
 {
-    public int Id { get; set; }
-    public string Email { get; set; } 
-    public int CategoryId { get; set; }
+    public class UserPreferencesReplica
+    {
+        [Key]
+        public int Id { get; set; }
+        [Required]
+        public int UserId { get; set; }
+        [Required, MaxLength(100)]
+        public required string Email { get; set; }
+        public List<NewsCategory> NewsCategories { get; set; } = [];
+    }
 }
+

@@ -19,11 +19,16 @@ namespace NewsManagementService.Infrastructure.Repositories
                 .ToListAsync();
         }
 
-        public async Task<List<NewsSummary>> GetNewsByCategoryId(int id)
+        public async Task<List<NewsSummary>> GetNewsSummaryByUserId(int userId)
         {
             return await context.NewsSummaries
-                .Where(n => n.NewsCategories.Any(c => c.Id == id))
+                .Where(n => n.NewsCategories
+                    .Any(category => category.UserPreferences
+                        .Any(user => user.UserId == userId)
+                    )
+                )
                 .Include(n => n.NewsCategories)
+                .OrderByDescending(n => n.Date)
                 .ToListAsync();
         }
         

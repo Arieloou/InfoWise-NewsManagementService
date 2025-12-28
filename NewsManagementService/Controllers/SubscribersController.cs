@@ -8,7 +8,7 @@ namespace NewsManagementService.Controllers
     public class SubscribersController(IUserPreferencesReplicaRepository repository) : ControllerBase
     {
         [HttpPost("subscribers")]
-        public async Task<IActionResult> GetSubscribers([FromBody] List<string> categoryNames)
+        public async Task<IActionResult> GetEmailFromSubscribers([FromBody] List<string> categoryNames)
         {
             var emails = await repository.GetEmailsByCategoryNamesAsync(categoryNames);
         

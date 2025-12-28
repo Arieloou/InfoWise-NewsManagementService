@@ -7,10 +7,11 @@ namespace NewsManagementService.Models
     {
         [Key]
         public int Id { get; set; }
-        [Required]
+        [Required, MaxLength(50)]
         public required string Name { get; set; } = string.Empty;
         [ForeignKey(nameof(MacroNewsCategory))]
-        public required int MacroNewsCategoryId { get; set; }
+        public int MacroNewsCategoryId { get; set; }
         public List<NewsSummary> NewsSummaries { get; } = [];
+        public List<UserPreferencesReplica> UserPreferences { get; } = [];
     }
 }

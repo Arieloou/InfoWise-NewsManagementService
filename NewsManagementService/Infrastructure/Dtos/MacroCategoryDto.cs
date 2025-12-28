@@ -2,6 +2,6 @@
 
 public class MacroCategoryDto
 {
-    public string Name { get; set; } // Ej: "Economía"
+    public string Name { get; set; }
     public List<CategoryDto> Categories { get; set; }
 }

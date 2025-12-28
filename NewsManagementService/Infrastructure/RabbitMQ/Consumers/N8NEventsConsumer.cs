@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Text.Json;
+using NewsManagementService.Application;
 using NewsManagementService.Infrastructure.DTOs;
 using NewsManagementService.Interfaces.RabbitMQ;
 using RabbitMQ.Client;
@@ -7,17 +8,17 @@ using RabbitMQ.Client.Events;
 
 namespace NewsManagementService.Infrastructure.RabbitMQ.Consumers
 {
-    public class NotificationsEventsConsumer: BackgroundService, IConsumer
+    public class N8NEventsConsumer: BackgroundService, IConsumer
     {
-        public string QueueName => "notification.alerts";
+        public string QueueName => "news.summary-processed.queue";
 
-        private readonly ILogger<NotificationsEventsConsumer> _logger;
+        private readonly ILogger<N8NEventsConsumer> _logger;
         private readonly IQueueConnection _queueConnection;
         private readonly IServiceScopeFactory _scopeFactory;
 
         private IChannel _channel;
 
-        public NotificationsEventsConsumer(ILogger<NotificationsEventsConsumer> logger, IQueueConnection queueConnection, IServiceScopeFactory serviceScopeFactory)
+        public N8NEventsConsumer(ILogger<N8NEventsConsumer> logger, IQueueConnection queueConnection, IServiceScopeFactory serviceScopeFactory)
         {
             _logger = logger;
             _queueConnection = queueConnection;
@@ -30,13 +31,13 @@ namespace NewsManagementService.Infrastructure.RabbitMQ.Consumers
             {
                 _channel = await _queueConnection.CreateChannelAsync();
 
-                await _channel.BasicQosAsync(prefetchSize: 0, prefetchCount: 1, global: false);
+                await _channel.BasicQosAsync(prefetchSize: 0, prefetchCount: 1, global: false, cancellationToken: stoppingToken);
 
                 var consumer = new AsyncEventingBasicConsumer(_channel);
 
                 consumer.ReceivedAsync += OnMessageReceived;
 
-                await _channel.BasicConsumeAsync(queue: QueueName, autoAck: false, consumer: consumer);
+                await _channel.BasicConsumeAsync(queue: QueueName, autoAck: false, consumer: consumer, cancellationToken: stoppingToken);
 
                 _logger.LogInformation("Consumer started. Waiting for messages in queue '{QueueName}'.", QueueName);
 

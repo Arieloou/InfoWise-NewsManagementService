@@ -16,6 +16,10 @@ namespace NewsManagementService.Infrastructure
             modelBuilder.Entity<NewsSummary>()
                 .HasMany(e => e.NewsCategories)
                 .WithMany(e => e.NewsSummaries);
+            
+            modelBuilder.Entity<NewsCategory>()
+                .HasMany(e => e.UserPreferences)
+                .WithMany(e => e.NewsCategories);
         }
     }
 }

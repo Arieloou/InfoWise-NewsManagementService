@@ -2,12 +2,13 @@
 using NewsManagementService.Interfaces.Repositories;
 using NewsManagementService.Models;
 using System.Threading.Tasks;
+using NewsManagementService.Application;
 
 namespace NewsManagementService.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class NewsSummaryController(INewsRepository repository) : ControllerBase
+    public class NewsSummaryController(NewsAppService service) : ControllerBase
     {
         [HttpGet]
         [Route("health")]
@@ -15,19 +16,12 @@ namespace NewsManagementService.Controllers
         {
             return Ok("NewsSummary Service is running.");
         }
-        
-        [HttpGet]
-        [Route("all")]
-        public async Task<List<NewsSummary>> GetAllNewsSummaries()
-        {
-            return await repository.GetAllNewsAsync();
-        }   
 
         [HttpGet]
-        [Route("category/{id}")]
-        public async Task<List<NewsSummary>> GetNewsByCategoryId(int categoryId) 
+        [Route("news-summary/{userId}")]
+        public async Task<List<NewsSummary>> GetNewsSummaryByUserId(int userId) 
         {
-            return await repository.GetNewsByCategoryId(categoryId);
+            return await service.GetAllNewsSummariesByUserId(userId);
         }
     }
 }
