@@ -1,27 +1,22 @@
 ﻿using NewsManagementService.Infrastructure.DTOs;
-using NewsManagementService.Infrastructure.Repositories;
+using NewsManagementService.Interfaces.Repositories;
 using NewsManagementService.Models;
 
 namespace NewsManagementService.Application
 {
-    public class NewsAppService(NewsRepository newsRepository, NewsCategoriesRepository newsCategoriesRepository, UserPreferencesReplicaRepository userPreferencesReplicaRepository)
+    public class NewsAppService(INewsRepository newsRepository, INewsCategoriesRepository newsCategoriesRepository, IMacroNewsCategoriesRepository macroNewsCategoriesRepository,IUserPreferencesReplicaRepository userPreferencesReplicaRepository)
     {
-        public async Task<List<NewsCategory>> GetAllNewsCategories()
+        public async Task<List<string>> GetAllNewsCategoriesNames()
         {
-            return await newsCategoriesRepository.GetAllNewsCategories();
+            return await newsCategoriesRepository.GetAllNewsCategoriesNames();
         }
         
-        public async Task<List<NewsSummary>> GetAllNewsSummary()
+        public async Task<List<MacroCategoryDto>> GetAllNewsDataByUserId(int userId)
         {
-            return await newsRepository.GetAllNewsAsync();
-        }
-
-        public async Task<List<NewsSummary>> GetAllNewsSummariesByUserId(int userId)
-        {
-            return await newsRepository.GetNewsSummaryByUserId(userId);
+            return await newsRepository.GetAllNewsDataByUserIdAsync(userId);
         }
         
-        public async Task SaveNewsSummaryInformation(GeminiRootDto geminiData)
+        public async Task SaveNewsSummaryInformation(GeminiResponseDto geminiData)
         {
             await newsRepository.SaveGeminiNewsBatchAsync(geminiData);
         }
@@ -29,6 +24,11 @@ namespace NewsManagementService.Application
         public async Task SaveUserPreferencesInformation(UserPreferencesDto userPreferencesData)
         {
             await userPreferencesReplicaRepository.SaveUserPreferencesAsync(userPreferencesData);
+        }
+
+        public async Task<NewsAppResponseDto> GetNewsDataForN8N()
+        {
+            return await userPreferencesReplicaRepository.GetNewsDataForN8NAsync();
         }
     }
 }

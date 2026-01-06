@@ -2,8 +2,7 @@
 
 public class NewsSummaryDto
 {
-    public string Title { get; set; }
-    public string Content { get; set; }
+    public required string Title { get; set; }
+    public required string Content { get; set; }
     public DateTime Date { get; set; }
-    public List<CategoryDto> NewsCategories { get; set; }
 }

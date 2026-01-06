@@ -16,17 +16,16 @@ public class UserPreferencesReplicaRepository(ApplicationDbContext context) : IU
             .ToListAsync();
 
         var existingReplica = await context.UserPreferencesReplicas
-            .Include(u => u.NewsCategories) 
+            .Include(u => u.SubscribedNewsCategories) 
             .FirstOrDefaultAsync(u => u.UserId == userPreferencesDto.UserId);
 
         if (existingReplica != null)
         {
             existingReplica.Email = userPreferencesDto.Email;
-            existingReplica.NewsCategories.Clear();
-        
+            existingReplica.SubscribedNewsCategories.Clear();
             foreach (var category in categories)
             {
-                existingReplica.NewsCategories.Add(category);
+                existingReplica.SubscribedNewsCategories.Add(category);
             }
         }
         else
@@ -35,24 +34,45 @@ public class UserPreferencesReplicaRepository(ApplicationDbContext context) : IU
             {
                 UserId = userPreferencesDto.UserId,
                 Email = userPreferencesDto.Email,
-                NewsCategories = categories
+                SubscribedNewsCategories = categories
             };
-        
             await context.UserPreferencesReplicas.AddAsync(newReplica);
         }
 
         await context.SaveChangesAsync();
     }
-
-    public async Task<List<string>> GetEmailsByCategoryNamesAsync(List<string> categoryNames)
+    
+    public async Task<NewsAppResponseDto> GetNewsDataForN8NAsync()
     {
-        // Select all the users where ANY of their categories has a Name included in the categoryNames list
-        var emails = await context.UserPreferencesReplicas
-            .Where(user => user.NewsCategories.Any(cat => categoryNames.Contains(cat.Name)))
-            .Select(user => user.Email)
-            .Distinct()
+        var categoryDtos = await context.NewsCategories
+            .AsNoTracking()
+            .Where(c => c.NewsSummaries.Any()) 
+            .Select(category => new FormatedCategoryDto
+            {
+                NewsCategoryName = category.Name,
+
+                NewsSummaryDto = category.NewsSummaries
+                    .OrderByDescending(s => s.Date)
+                    .Select(s => new NewsSummaryDto
+                    {
+                        Title = s.Title,
+                        Content = s.Content,
+                        Date = s.Date
+                    })
+                    .FirstOrDefault(), 
+
+                SubscribedUserEmails = category.UserPreferences
+                    .Select(u => new EmailDto 
+                    { 
+                        Email = u.Email 
+                    })
+                    .ToList()
+            })
             .ToListAsync();
 
-        return emails;
+        return new NewsAppResponseDto
+        {
+            NewsCategoryDtos = categoryDtos
+        };
     }
 }

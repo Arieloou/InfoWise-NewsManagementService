@@ -5,5 +5,5 @@ namespace NewsManagementService.Interfaces.Repositories;
 public interface IUserPreferencesReplicaRepository
 {
     public Task SaveUserPreferencesAsync(UserPreferencesDto userPreferencesDto);
-    public Task<List<string>> GetEmailsByCategoryNamesAsync(List<string> categoryNames);
+    public Task<NewsAppResponseDto> GetNewsDataForN8NAsync();
 }

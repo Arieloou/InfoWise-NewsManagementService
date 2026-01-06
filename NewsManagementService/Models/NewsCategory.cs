@@ -5,13 +5,19 @@ namespace NewsManagementService.Models
 {
     public class NewsCategory
     {
-        [Key]
+        [Key] 
         public int Id { get; set; }
-        [Required, MaxLength(50)]
+        
+        [Required, MaxLength(50)] 
         public required string Name { get; set; } = string.Empty;
+
         [ForeignKey(nameof(MacroNewsCategory))]
         public int MacroNewsCategoryId { get; set; }
-        public List<NewsSummary> NewsSummaries { get; } = [];
-        public List<UserPreferencesReplica> UserPreferences { get; } = [];
+        
+        public MacroNewsCategory? MacroNewsCategory { get; set; }
+        
+        public List<NewsSummary>? NewsSummaries { get; } = [];
+
+        public List<UserPreferencesReplica>? UserPreferences { get; } = [];
     }
 }

@@ -1,9 +1,11 @@
 using System.Text.Json.Serialization;
 using Microsoft.EntityFrameworkCore;
+using NewsManagementService.Application;
 using NewsManagementService.Infrastructure;
 using NewsManagementService.Infrastructure.RabbitMQ.Configuration;
 using NewsManagementService.Infrastructure.RabbitMQ.Consumers;
 using NewsManagementService.Infrastructure.Repositories;
+using NewsManagementService.Infrastructure.Seeders;
 using NewsManagementService.Interfaces.RabbitMQ;
 using NewsManagementService.Interfaces.Repositories;
 
@@ -30,11 +32,15 @@ builder.Services.Configure<RabbitMqConfiguration>(
 
 builder.Services.AddSingleton<IQueueConnection, RabbitMqConnection>();
 builder.Services.AddHostedService<N8NEventsConsumer>();
+builder.Services.AddHostedService<UserPreferencesConsumer>();
 
 builder.Services.AddScoped<INewsRepository, NewsRepository>();
 builder.Services.AddScoped<INewsCategoriesRepository, NewsCategoriesRepository>();
 builder.Services.AddScoped<IMacroNewsCategoriesRepository, MacroNewsCategoriesRepository>();
 builder.Services.AddScoped<IUserPreferencesReplicaRepository, UserPreferencesReplicaRepository>();
+
+// Main Application Service
+builder.Services.AddScoped<NewsAppService>();
 
 var app = builder.Build();
 
@@ -47,8 +53,21 @@ if (app.Environment.IsDevelopment())
 
 using (var scope = app.Services.CreateScope())
 {
-    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    dbContext.Database.Migrate();
+    var services = scope.ServiceProvider;
+    var logger = services.GetRequiredService<ILogger<Program>>();
+    
+    try
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        dbContext.Database.Migrate();
+        
+        DbInitializer.SeedAsync(dbContext).Wait();
+        logger.LogInformation("Data seeding was successful.");
+    }
+    catch (Exception ex)
+    {
+        logger.LogError(ex, "An error occurred during data migration or seeding.");
+    }
 }
 
 app.UseHttpsRedirection();

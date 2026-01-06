@@ -11,10 +11,10 @@ namespace NewsManagementService.Infrastructure.Repositories
             await context.NewsCategories.AddAsync(newsCategory);
         }
 
-        public async Task<List<NewsCategory>> GetAllNewsCategories()
+        public async Task<List<string>> GetAllNewsCategoriesNames()
         {
             return await context.NewsCategories
-                .Include(c => c.NewsSummaries)
+                .Select(newsCategory => newsCategory.Name)
                 .ToListAsync();
         }
     }

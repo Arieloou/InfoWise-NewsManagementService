@@ -1,19 +1,29 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NewsManagementService.Application;
+using NewsManagementService.Infrastructure.DTOs;
 using NewsManagementService.Interfaces.Repositories;
 
 namespace NewsManagementService.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
-    public class SubscribersController(IUserPreferencesReplicaRepository repository) : ControllerBase
+    [Route("subscribers")]
+    public class SubscribersController(NewsAppService service) : ControllerBase
     {
-        [HttpPost("subscribers")]
-        public async Task<IActionResult> GetEmailFromSubscribers([FromBody] List<string> categoryNames)
+        /// <summary>
+        /// Endpoint utilizado exclusivamente por N8N para obtener el lote de noticias
+        /// y los correos de los suscriptores para el envío diario.
+        /// </summary>
+        [HttpGet("newsletter-batch")]
+        public async Task<IActionResult> GetNewsletterBatchForN8N()
         {
-            var emails = await repository.GetEmailsByCategoryNamesAsync(categoryNames);
+            var response = await service.GetNewsDataForN8N();
         
-            // Example: It can return : ["juan@gmail.com", "pedro@hotmail.com"]
-            return Ok(emails.Distinct()); 
+            if (response.NewsCategoryDtos.Count == 0)
+            {
+                return Content("No news data found for any category.");
+            }
+
+            return Ok(response);
         }
     }
 }

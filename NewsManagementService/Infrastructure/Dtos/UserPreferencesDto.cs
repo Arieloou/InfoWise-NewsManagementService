@@ -2,7 +2,7 @@
 
 public class UserPreferencesDto
 {
-    public int UserId { get; set; }
-    public string Email { get; set; } 
-    public List<int> CategoryIds { get; set; }
+    public required int UserId { get; set; }
+    public required string Email { get; set; } 
+    public List<int>? CategoryIds { get; set; }
 }

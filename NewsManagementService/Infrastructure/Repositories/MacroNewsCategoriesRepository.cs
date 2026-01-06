@@ -8,7 +8,7 @@ public class MacroNewsCategoriesRepository(ApplicationDbContext context) : IMacr
 {
     public async Task<List<MacroNewsCategory>> GetAll()
     {
-        return await context.MacroNewsCategories.ToListAsync();
+        return await context.MacroNewsCategories.Include(m => m.NewsCategories).ToListAsync();
     }
 
     public async Task<MacroNewsCategory?> GetById(int id)

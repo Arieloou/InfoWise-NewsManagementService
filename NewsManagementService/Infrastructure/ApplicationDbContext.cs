@@ -14,12 +14,16 @@ namespace NewsManagementService.Infrastructure
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<NewsSummary>()
-                .HasMany(e => e.NewsCategories)
+                .HasOne(e => e.NewsCategory)
                 .WithMany(e => e.NewsSummaries);
             
-            modelBuilder.Entity<NewsCategory>()
-                .HasMany(e => e.UserPreferences)
-                .WithMany(e => e.NewsCategories);
+            modelBuilder.Entity<UserPreferencesReplica>()
+                .HasMany(e => e.SubscribedNewsCategories)
+                .WithMany(e => e.UserPreferences);
+            
+            modelBuilder.Entity<MacroNewsCategory>()
+                .HasMany(e => e.NewsCategories)
+                .WithOne(e => e.MacroNewsCategory);
         }
     }
 }

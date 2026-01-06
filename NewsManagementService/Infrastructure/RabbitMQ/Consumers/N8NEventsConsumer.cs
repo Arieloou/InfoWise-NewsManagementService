@@ -73,7 +73,7 @@ namespace NewsManagementService.Infrastructure.RabbitMQ.Consumers
             var newsAppService = scope.ServiceProvider.GetRequiredService<NewsAppService>();
             
             var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
-            var geminiData = JsonSerializer.Deserialize<GeminiRootDto>(message, options);
+            var geminiData = JsonSerializer.Deserialize<GeminiResponseDto>(message, options);
 
             if (geminiData != null)
             {

@@ -2,14 +2,15 @@
 
 namespace NewsManagementService.Models
 {
-    public class MacroNewsCategory
+    public sealed class MacroNewsCategory
     {
         [Key]
         public int Id { get; set; }
+        
         [Required, MaxLength(50)]
         public required string Name { get; set; }
-        public virtual ICollection<NewsCategory>? NewsCategories { get; set; }
-        public virtual ICollection<NewsSummary>? NewsSummaries { get; set; }
+        
+        public ICollection<NewsCategory>? NewsCategories { get; set; }
     }
 }
 
