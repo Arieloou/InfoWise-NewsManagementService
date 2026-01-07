@@ -14,7 +14,7 @@ namespace NewsManagementService.Controllers
         /// y los correos de los suscriptores para el envío diario.
         /// </summary>
         [HttpGet("newsletter-batch")]
-        public async Task<IActionResult> GetNewsletterBatchForN8N()
+        public async Task<ActionResult<FormatedCategoryDto>> GetNewsletterBatchForN8N()
         {
             var response = await service.GetNewsDataForN8N();
         

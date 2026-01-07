@@ -31,13 +31,13 @@ namespace NewsManagementService.Infrastructure.Repositories
             // Estructura: Macro -> Categories -> Summaries
             var hierarchicalData = flatNewsList
                 .Where(n => n.NewsCategory?.MacroNewsCategory != null) 
-                .GroupBy(n => n.NewsCategory!.MacroNewsCategory.Name) // First Level: Group by Macro
+                .GroupBy(n => n.NewsCategory!.MacroNewsCategory!.Name) // First Level: Group by Macro
                 .Select(macroGroup => new MacroCategoryDto
                 {
                     Name = macroGroup.Key!,
             
                     CategoryDtos = macroGroup
-                        .GroupBy(n => n.NewsCategory.Name) // Second Level: Group by Category within the Macro
+                        .GroupBy(n => n.NewsCategory!.Name) // Second Level: Group by Category within the Macro
                         .Select(catGroup => new CategoryDto
                         {
                             Name = catGroup.Key!,

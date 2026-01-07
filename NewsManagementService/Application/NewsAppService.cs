@@ -6,9 +6,9 @@ namespace NewsManagementService.Application
 {
     public class NewsAppService(INewsRepository newsRepository, INewsCategoriesRepository newsCategoriesRepository, IMacroNewsCategoriesRepository macroNewsCategoriesRepository,IUserPreferencesReplicaRepository userPreferencesReplicaRepository)
     {
-        public async Task<List<string>> GetAllNewsCategoriesNames()
+        public async Task<List<NewsCategoryResponseDto>> GetAllNewsCategories()
         {
-            return await newsCategoriesRepository.GetAllNewsCategoriesNames();
+            return await newsCategoriesRepository.GetAllNewsCategories();
         }
         
         public async Task<List<MacroCategoryDto>> GetAllNewsDataByUserId(int userId)

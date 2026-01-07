@@ -67,7 +67,7 @@ public class UserPreferencesReplicaRepository(ApplicationDbContext context) : IU
                         Email = u.Email 
                     })
                     .ToList()
-            })
+            })      
             .ToListAsync();
 
         return new NewsAppResponseDto

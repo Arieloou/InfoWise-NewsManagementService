@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NewsManagementService.Infrastructure.DTOs;
 using NewsManagementService.Interfaces.Repositories;
 using NewsManagementService.Models;
 
@@ -11,10 +12,14 @@ namespace NewsManagementService.Infrastructure.Repositories
             await context.NewsCategories.AddAsync(newsCategory);
         }
 
-        public async Task<List<string>> GetAllNewsCategoriesNames()
+        public async Task<List<NewsCategoryResponseDto>> GetAllNewsCategories()
         {
             return await context.NewsCategories
-                .Select(newsCategory => newsCategory.Name)
+                .Select(category => new NewsCategoryResponseDto
+                {
+                    NewsCategoryId = category.Id,
+                    NewsCategoryName = category.Name
+                } )
                 .ToListAsync();
         }
     }

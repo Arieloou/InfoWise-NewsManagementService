@@ -18,11 +18,11 @@ namespace NewsManagementService.Controllers
 
         [HttpGet]
         [Route("categories/all")]
-        public async Task<ActionResult<List<string>>> GetAllCategories()
+        public async Task<ActionResult<List<NewsCategoryResponseDto>>> GetAllCategories()
         {
             try
             {
-                var response = await service.GetAllNewsCategoriesNames();
+                var response = await service.GetAllNewsCategories();
                 return Ok(response);
             }
             catch (Exception e)

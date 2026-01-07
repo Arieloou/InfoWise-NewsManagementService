@@ -62,14 +62,14 @@ public class DbInitializer
             
             var user1 = new UserPreferencesReplica
             {
-                UserId = 101,
+                UserId = 1,
                 Email = "usuario1@ejemplo.com",
                 SubscribedNewsCategories = new List<NewsCategory> { catAI, catDev } 
             };
 
             var user2 = new UserPreferencesReplica
             {
-                UserId = 102,
+                UserId = 2,
                 Email = "usuario2@ejemplo.com",
                 SubscribedNewsCategories = new List<NewsCategory> { catFootball, catPolitics, catAI }
             };

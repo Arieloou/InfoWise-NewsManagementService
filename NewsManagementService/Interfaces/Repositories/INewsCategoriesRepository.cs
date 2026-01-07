@@ -1,10 +1,11 @@
-﻿using NewsManagementService.Models;
+﻿using NewsManagementService.Infrastructure.DTOs;
+using NewsManagementService.Models;
 
 namespace NewsManagementService.Interfaces.Repositories
 {
     public interface INewsCategoriesRepository
     {
-        public Task<List<string>> GetAllNewsCategoriesNames();
+        public Task<List<NewsCategoryResponseDto>> GetAllNewsCategories();
         public Task AddNewsCategory(NewsCategory newsCategory);
     }
 }
