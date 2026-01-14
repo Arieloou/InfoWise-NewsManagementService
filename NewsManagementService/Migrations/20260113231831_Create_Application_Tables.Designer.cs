@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace NewsManagementService.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260102224209_Create_Application_Tables")]
+    [Migration("20260113231831_Create_Application_Tables")]
     partial class Create_Application_Tables
     {
         /// <inheritdoc />
@@ -129,6 +129,9 @@ namespace NewsManagementService.Migrations
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
+
+                    b.Property<int>("ShippingHour")
+                        .HasColumnType("integer");
 
                     b.Property<int>("UserId")
                         .HasColumnType("integer");

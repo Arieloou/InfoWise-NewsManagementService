@@ -25,5 +25,18 @@ namespace NewsManagementService.Controllers
 
             return Ok(response);
         }
+
+        [HttpGet("newsletter-batch/filter-by-shipping-hour/{hour}")]
+        public async Task<ActionResult<FormatedCategoryDto>> GetNewsDataForN8N(int hour)
+        {
+            var response = await service.GetNewsDataForN8NByHour(hour);
+
+            if (response.NewsCategoryDtos.Count == 0)
+            {
+                return Content("No news data found for any category on this schedule.");
+            }
+            
+            return Ok(response);
+        }
     }
 }

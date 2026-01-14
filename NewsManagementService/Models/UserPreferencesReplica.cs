@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NewsManagementService.Models
 {
@@ -13,6 +12,9 @@ namespace NewsManagementService.Models
         
         [Required, MaxLength(100)]
         public required string Email { get; set; }
+        
+        [Required]
+        public int ShippingHour { get; set; }
         
         public List<NewsCategory> SubscribedNewsCategories { get; set; } = [];
     }

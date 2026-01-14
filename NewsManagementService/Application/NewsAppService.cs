@@ -30,5 +30,10 @@ namespace NewsManagementService.Application
         {
             return await userPreferencesReplicaRepository.GetNewsDataForN8NAsync();
         }
+        
+        public async Task<NewsAppResponseDto> GetNewsDataForN8NByHour(int hour)
+        {
+            return await userPreferencesReplicaRepository.GetNewsDataForN8NByHourAsync(hour);
+        }
     }
 }

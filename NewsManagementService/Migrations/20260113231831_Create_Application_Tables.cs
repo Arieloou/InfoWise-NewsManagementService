@@ -32,7 +32,8 @@ namespace NewsManagementService.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserId = table.Column<int>(type: "integer", nullable: false),
-                    Email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false)
+                    Email = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    ShippingHour = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
