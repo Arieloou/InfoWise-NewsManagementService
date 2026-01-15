@@ -12,42 +12,37 @@ namespace NewsManagementService.Infrastructure.Repositories
             await context.NewsSummaries.AddAsync(news);
         }
         
-        private async Task<List<NewsSummary>> GetFlatNewsListAsync(int userId)
-        {
-            return await context.NewsSummaries
-                .AsNoTracking()
-                .Include(n => n.NewsCategory)
-                .ThenInclude(nc => nc!.MacroNewsCategory)
-                .Where(n => n.NewsCategory != null && 
-                            n.NewsCategory.UserPreferences!.Any(u => u.UserId == userId))
-                .OrderByDescending(n => n.Date)
-                .ToListAsync();
-        }
-        
         public async Task<List<MacroCategoryDto>> GetAllNewsDataByUserIdAsync(int userId)
         {
-            var flatNewsList = await GetFlatNewsListAsync(userId);
+            // Obtener todas las categorías a las que el usuario está suscrito con sus relaciones
+            var subscribedCategories = await context.NewsCategories
+                .AsNoTracking()
+                .Include(nc => nc.MacroNewsCategory)
+                .Include(nc => nc.NewsSummaries)
+                .Where(nc => nc.UserPreferences!.Any(u => u.UserId == userId))
+                .ToListAsync();
             
             // Estructura: Macro -> Categories -> Summaries
-            var hierarchicalData = flatNewsList
-                .Where(n => n.NewsCategory?.MacroNewsCategory != null) 
-                .GroupBy(n => n.NewsCategory!.MacroNewsCategory!.Name) // First Level: Group by Macro
+            var hierarchicalData = subscribedCategories
+                .Where(nc => nc.MacroNewsCategory != null)
+                .GroupBy(nc => nc.MacroNewsCategory!.Name) // First Level: Group by Macro
                 .Select(macroGroup => new MacroCategoryDto
                 {
-                    Name = macroGroup.Key!,
+                    MacroCategoryName = macroGroup.Key!,
             
                     CategoryDtos = macroGroup
-                        .GroupBy(n => n.NewsCategory!.Name) // Second Level: Group by Category within the Macro
-                        .Select(catGroup => new CategoryDto
+                        .Select(category => new CategoryDto
                         {
-                            Name = catGroup.Key!,
+                            Name = category.Name,
                     
-                            NewsSummaryDtos = catGroup.Select(n => new NewsSummaryDto
-                            {
-                                Title = n.Title,
-                                Content = n.Content,
-                                Date = n.Date
-                            }).ToList() // Third Level: Final list of news
+                            NewsSummaryDtos = category.NewsSummaries?
+                                .OrderByDescending(n => n.Date)
+                                .Select(n => new NewsSummaryDto
+                                {
+                                    Title = n.Title,
+                                    Content = n.Content,
+                                    Date = n.Date
+                                }).ToList() ?? new List<NewsSummaryDto>()
                         }).ToList()
                 })
                 .ToList();
@@ -62,11 +57,11 @@ namespace NewsManagementService.Infrastructure.Repositories
             foreach (var macroCategoryDto in responseData.MacrocategoryDtos)
             {
                 var macroEntity = await context.MacroNewsCategories
-                    .FirstOrDefaultAsync(m => m.Name == macroCategoryDto.Name);
+                    .FirstOrDefaultAsync(m => m.Name == macroCategoryDto.MacroCategoryName);
 
                 if (macroEntity == null)
                 {
-                    macroEntity = new MacroNewsCategory { Name = macroCategoryDto.Name };
+                    macroEntity = new MacroNewsCategory { Name = macroCategoryDto.MacroCategoryName };
                     await context.MacroNewsCategories.AddAsync(macroEntity);
                     await context.SaveChangesAsync();
                 }
@@ -103,6 +98,75 @@ namespace NewsManagementService.Infrastructure.Repositories
                 }
             }
             await context.SaveChangesAsync();
+        }
+
+        public async Task<NewsAppResponseDto> GetNewsDataForN8NAsync()
+        {
+            var categoryDtos = await context.NewsCategories
+                .AsNoTracking()
+                .Where(c => c.NewsSummaries.Any()) 
+                .Select(category => new FormatedCategoryDto
+                {
+                    NewsCategoryName = category.Name,
+
+                    NewsSummaryDto = category.NewsSummaries
+                        .OrderByDescending(s => s.Date)
+                        .Select(s => new NewsSummaryDto
+                        {
+                            Title = s.Title,
+                            Content = s.Content,
+                            Date = s.Date
+                        })
+                        .FirstOrDefault(), 
+
+                    SubscribedUserEmails = category.UserPreferences
+                        .Select(u => new EmailDto 
+                        { 
+                            Email = u.Email 
+                        })
+                        .ToList()
+                })      
+                .ToListAsync();
+
+            return new NewsAppResponseDto
+            {
+                NewsCategoryDtos = categoryDtos
+            };
+        }
+
+        public async Task<NewsAppResponseDto> GetNewsDataForN8NByHourAsync(int hour)
+        {
+            var categoryDtos = await context.NewsCategories
+                .AsNoTracking()
+                .Where(c => c.NewsSummaries.Any())
+                .Where(c => c.UserPreferences.Any(u => u.ShippingHour == hour))
+                .Select(category => new FormatedCategoryDto
+                {
+                    NewsCategoryName = category.Name,
+
+                    NewsSummaryDto = category.NewsSummaries
+                        .OrderByDescending(s => s.Date)
+                        .Select(s => new NewsSummaryDto
+                        {
+                            Title = s.Title,
+                            Content = s.Content,
+                            Date = s.Date
+                        })
+                        .FirstOrDefault(), 
+
+                    SubscribedUserEmails = category.UserPreferences
+                        .Select(u => new EmailDto 
+                        { 
+                            Email = u.Email 
+                        })
+                        .ToList()
+                })      
+                .ToListAsync();
+
+            return new NewsAppResponseDto
+            {
+                NewsCategoryDtos = categoryDtos
+            };
         }
     }
 }

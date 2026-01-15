@@ -5,8 +5,9 @@ namespace NewsManagementService.Interfaces.Repositories
 {
     public interface INewsRepository
     {
-        public Task AddNewsAsync(NewsSummary news);
         public Task<List<MacroCategoryDto>> GetAllNewsDataByUserIdAsync(int userId);
         public Task SaveGeminiNewsBatchAsync(GeminiResponseDto responseData);
+        public Task<NewsAppResponseDto> GetNewsDataForN8NAsync();
+        public Task<NewsAppResponseDto> GetNewsDataForN8NByHourAsync(int hour);
     }
 }

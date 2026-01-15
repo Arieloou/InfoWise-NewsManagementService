@@ -5,6 +5,4 @@ namespace NewsManagementService.Interfaces.Repositories;
 public interface IUserPreferencesReplicaRepository
 {
     public Task SaveUserPreferencesAsync(UserPreferencesDto userPreferencesDto);
-    public Task<NewsAppResponseDto> GetNewsDataForN8NAsync();
-    public Task<NewsAppResponseDto> GetNewsDataForN8NByHourAsync(int hour);
 }

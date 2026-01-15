@@ -60,22 +60,6 @@ public class DbInitializer
 
             context.NewsSummaries.AddRange(newsList);
             
-            var user1 = new UserPreferencesReplica
-            {
-                UserId = 1,
-                Email = "usuario1@ejemplo.com",
-                SubscribedNewsCategories = new List<NewsCategory> { catAI, catDev } 
-            };
-
-            var user2 = new UserPreferencesReplica
-            {
-                UserId = 2,
-                Email = "usuario2@ejemplo.com",
-                SubscribedNewsCategories = new List<NewsCategory> { catFootball, catPolitics, catAI }
-            };
-
-        await context.UserPreferencesReplicas.AddRangeAsync(user1, user2);
-            
         await context.SaveChangesAsync();
     }
 }

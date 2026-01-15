@@ -6,6 +6,5 @@ namespace NewsManagementService.Interfaces.Repositories
     public interface INewsCategoriesRepository
     {
         public Task<List<NewsCategoryResponseDto>> GetAllNewsCategories();
-        public Task AddNewsCategory(NewsCategory newsCategory);
     }
 }
