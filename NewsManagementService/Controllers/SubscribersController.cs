@@ -29,9 +29,9 @@ namespace NewsManagementService.Controllers
         [HttpGet("newsletter-batch/filter-by-shipping-hour/{hour}")]
         public async Task<ActionResult<FormatedCategoryDto>> GetNewsDataForN8N(int hour)
         {
-            if (hour < 0 || hour > 24)
+            if (hour < 0 || hour > 23)
             {
-                return BadRequest("Hour must be between 0 and 24.");
+                return BadRequest("Hour must be between 0 and 23.");
             }
             
             var response = await service.GetNewsDataForN8NByHour(hour);
