@@ -10,7 +10,7 @@ namespace NewsManagementService.Infrastructure.RabbitMQ.Consumers;
 
 public class UserPreferencesConsumer : BackgroundService, IConsumer
 {
-    public string QueueName { get; } = "news.user-sync.queue";
+    public string QueueName { get; } = "user_preferences_to_sync";
     
     private readonly ILogger<N8NEventsConsumer> _logger;
     private readonly IQueueConnection _queueConnection;

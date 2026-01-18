@@ -10,7 +10,7 @@ namespace NewsManagementService.Infrastructure.RabbitMQ.Consumers
 {
     public class N8NEventsConsumer: BackgroundService, IConsumer
     {
-        public string QueueName => "news.summary-processed.queue";
+        public string QueueName => "articles_to_process";
 
         private readonly ILogger<N8NEventsConsumer> _logger;
         private readonly IQueueConnection _queueConnection;
