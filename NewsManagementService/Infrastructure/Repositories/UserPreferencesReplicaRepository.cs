@@ -22,6 +22,7 @@ public class UserPreferencesReplicaRepository(ApplicationDbContext context) : IU
         if (existingReplica != null)
         {
             existingReplica.Email = userPreferencesDto.Email;
+            existingReplica.ShippingHour = userPreferencesDto.ShippingHour;
             existingReplica.SubscribedNewsCategories.Clear();
             foreach (var category in categories)
             {
