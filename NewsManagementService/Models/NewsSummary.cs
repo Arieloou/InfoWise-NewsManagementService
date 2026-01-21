@@ -8,7 +8,7 @@ namespace NewsManagementService.Models
         [Key]
         public int Id { get; set; }
         
-        [Required, MaxLength(100)]
+        [Required, MaxLength(300)]
         public string Title { get; set; } = string.Empty;
         
         [Required, DataType(DataType.MultilineText), MaxLength(5000)]
