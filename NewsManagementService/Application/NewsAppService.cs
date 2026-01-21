@@ -35,5 +35,10 @@ namespace NewsManagementService.Application
         {
             return await newsRepository.GetNewsDataForN8NByHourAsync(hour);
         }
+
+        public async Task<List<MacroCategoryDto>> GetMacrocategoriesWithCategories()
+        {
+            return await macroNewsCategoriesRepository.GetAllDtos();
+        }
     }
 }

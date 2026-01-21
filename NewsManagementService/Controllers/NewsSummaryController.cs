@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NewsManagementService.Application;
 using NewsManagementService.Infrastructure.DTOs;
+using NewsManagementService.Models;
 
 namespace NewsManagementService.Controllers
 {
@@ -14,6 +15,26 @@ namespace NewsManagementService.Controllers
         public IActionResult HealthCheck()
         {
             return Ok(new { status = "Healthy", message = "NewsSummary Service is running." });
+        }
+
+        [HttpGet]
+        [Route("macrocategories-with-categories/all")]
+        public async Task<ActionResult<List<MacroNewsCategory>>> GetAllMacrocategories()
+        {
+            try
+            {
+                var response = await service.GetMacrocategoriesWithCategories();
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                logger.LogError(e, "Error retrieving news categories names.");
+                
+                return StatusCode(StatusCodes.Status500InternalServerError, new 
+                { 
+                    error = "An error occurred while processing your request.",
+                });
+            }
         }
 
         [HttpGet]

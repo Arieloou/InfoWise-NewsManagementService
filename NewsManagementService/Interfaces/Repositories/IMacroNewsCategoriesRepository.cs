@@ -1,4 +1,5 @@
-﻿using NewsManagementService.Models;
+﻿using NewsManagementService.Infrastructure.DTOs;
+using NewsManagementService.Models;
 
 namespace NewsManagementService.Interfaces.Repositories;
 
@@ -8,4 +9,5 @@ public interface IMacroNewsCategoriesRepository
     public Task<MacroNewsCategory?> GetById(int id);
     public Task AddAsync(MacroNewsCategory macroNewsCategory);
     public Task DeleteAsync(MacroNewsCategory macroNewsCategory);
+    public Task<List<MacroCategoryDto>> GetAllDtos();
 }
