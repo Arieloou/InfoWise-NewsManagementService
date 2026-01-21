@@ -87,7 +87,7 @@ namespace NewsManagementService.Infrastructure.Repositories
                         var newsSummary = new NewsSummary
                         {
                             Content = summaryDto.Content,
-                            Title = $"Summary of {summaryDto.Title} - {today.ToShortDateString()}", 
+                            Title = summaryDto.Title, 
                             Date = summaryDto.Date,
                             Source = "Gemini AI / N8N",
                             NewsCategoryId = categoryEntity.Id
